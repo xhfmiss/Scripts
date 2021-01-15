@@ -190,19 +190,14 @@ function getsign() {
 function activity() {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
-      $.get({url:`${TX_HOST}user/activity/get?isJailbreak=0&${ID}`, headers: {Cookie:cookieVal}}, (error,response, data) =>{
-        try{
-             let obj = JSON.parse(data)
-             actid = obj.data.activity.id
-            console.log(`\n您的活动ID为: `+actid+"\n")
-          } catch(error){
-           //$.msg("获取活动ID失败，详情请看日志","","")
-           //console.log("活动ID日志:"+ data)
-           
-             let obj = JSON.parse(data)
-             actid = "stair_redpack_chajian"
-             console.log(`\n您的活动ID为: `+actid+"\n")
-          }
+      $.get({url:`${TX_HOST}user/activity/get?isJailbreak=0&${token}`, headers: {Cookie:cookieVal}}, (error,response, data) =>{
+        if (error) {
+          $.msg("获取活动Id失败‼️", "", error)
+        } else {
+          let obj = JSON.parse(data)
+          actid = obj.data.activity.id
+          console.log(` 您的活动ID为: `+actid+"\n")
+        }
         resolve()
       })
     },s)
