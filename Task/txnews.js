@@ -196,8 +196,12 @@ function activity() {
              actid = obj.data.activity.id
             console.log(`\n您的活动ID为: `+actid+"\n")
           } catch(error){
-           $.msg("获取活动ID失败，详情请看日志","","")
-           console.log("活动ID日志:"+ data)
+           //$.msg("获取活动ID失败，详情请看日志","","")
+           //console.log("活动ID日志:"+ data)
+           
+             let obj = JSON.parse(data)
+             actid = "stair_redpack_chajian"
+             console.log(`\n您的活动ID为: `+actid+"\n")
           }
         resolve()
       })
